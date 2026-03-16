@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+
+  nginx:
+    image: nginx
+    ports:
+      - "8080:80"
+
+  redis:
+    image: redis
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
