@@ -1,0 +1,21 @@
+version: '3.9'
+
+services:
+  app:
+    build: ./app
+    container_name: flask_app
+    depends_on:
+        - redis
+  redis:
+    image: redis:7
+    container_name: redis_server
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_proxy
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
